@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+   name: my-app-service
+   labels:
+     app: myapp-service
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 80 # pod where app is running
+      port: 80 # service port from where reqs will be redirected to targetport
+      nodePort: 30008 # where service listens too.
+  selector:
+    app: myapp
+    type: front-end
+
