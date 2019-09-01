@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs-myapp
+  labels:
+    app: myapp
+    type: rs-front-end
+spec:
+  template:
+  # template of the pod which needs to be created by replica set
+    metadata:
+       name: pod-myapp
+       labels:
+         app: myapp
+         type: front-end
+    spec:
+      containers:
+         -  name: nginx
+            image: nginx
+  replicas: 1
+  selector:
+     matchLabels:
+        type: front-end
